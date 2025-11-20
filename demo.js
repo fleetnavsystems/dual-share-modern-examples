@@ -300,13 +300,14 @@ async function getSystemSettings(api) {
 }
 
 async function setSystemSettings(api, settings={}) {
-  const { dataVersion } = await getSystemSettings(api);
+  const { dataVersion, host } = await getSystemSettings(api);
 
   return await api.call('Set', {
     typeName: 'SystemSettings',
     entity: {
       ...settings,
       dataVersion,
+      host,
     }
   });
 }
